@@ -30,13 +30,13 @@ public class GreetingController {
 //	}
 
 	@RequestMapping({ "/greeting", "/greeting/{name}" })
-	public Greeting greeting(@PathVariable(value = "name", required = false) String name) {
-		 name = (name == null) ? "World" : name;
+	public Greeting greeting(@PathVariable(value = "name", required = false) String name) {  //Using Path Variables to achieve clean URLs.
+		name = (name == null) ? "World" : name;      // Using ternary operator to determine the result
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 
 	@RequestMapping(value = "/calculator/add/{op1}/{op2}")
-	public String add(@PathVariable("op1") String op1, @PathVariable("op2") String op2) {
+	public String add(@PathVariable String op1, @PathVariable String op2) {  //Using Path Variables to achieve clean URLs.
 		double op1_d = Double.parseDouble(op1);
 		double op2_d = Double.parseDouble(op2);
 		String result = op1 + " + " + op2 + " = " + String.valueOf(op1_d + op2_d);
@@ -45,7 +45,7 @@ public class GreetingController {
 	}
 
 	@RequestMapping(value = "/calculator/subtract/{op1}/{op2}")
-	public String subtract(@PathVariable("op1") String op1, @PathVariable("op2") String op2) {
+	public String subtract(@PathVariable String op1, @PathVariable String op2) { //Using Path Variables to achieve clean URLs.
 		double op1_d = Double.parseDouble(op1);
 		double op2_d = Double.parseDouble(op2);
 		String result = op1 + " - " + op2 + " = " + String.valueOf(op1_d - op2_d);
@@ -54,7 +54,7 @@ public class GreetingController {
 	}
 
 	@RequestMapping(value = "/calculator/multiply/{op1}/{op2}")
-	public String multiply(@PathVariable("op1") String op1, @PathVariable("op2") String op2) {
+	public String multiply(@PathVariable String op1, @PathVariable String op2) {  //Using Path Variables to achieve clean URLs.
 		double op1_d = Double.parseDouble(op1);
 		double op2_d = Double.parseDouble(op2);
 		String result = op1 + "  × " + op2 + " = " + String.valueOf(op1_d * op2_d);
@@ -63,9 +63,10 @@ public class GreetingController {
 	}
 
 	@RequestMapping(value = "/calculator/divide/{op1}/{op2}")
-	public String divide(@PathVariable("op1") String op1, @PathVariable("op2") String op2) {
+	public String divide(@PathVariable String op1, @PathVariable String op2) {   //Using Path Variables to achieve clean URLs.
 		double op1_d = Double.parseDouble(op1);
 		double op2_d = Double.parseDouble(op2);
+		// Using ternary operator to determine the result
         String result = (op2_d == 0) ? op1 + " / " + op2 + " = " + "Infinity" : op1 + " / " + op2 + " = " + String.valueOf(op1_d / op2_d);
         history = history + result + "<br>";
         return result;
